@@ -9,7 +9,7 @@ See [`action.yml`](action.yml)
 ```yaml
 steps:
 - name: Setup TypeScript environment
-  uses: lddkb/setup-ts-env@main
+  uses: lddkb/setup-ts-env@v1
   with:
     pnpm-version: '7.11.0'
     node-version: '18.8.0'
