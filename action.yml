@@ -2,7 +2,7 @@ name: Setup TypeScript environment
 description: Sets up the TypeScript environment with Node.js and pnpm.
 branding:
   color: blue
-  icon: tool
+  icon: box
 
 inputs:
   # pnpm/action-setup
