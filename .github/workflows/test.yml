@@ -22,7 +22,11 @@ jobs:
           skip-checkout: true
       - name: Validate pnpm version
         shell: bash
-        run: pnpm -v | grep -q '7.10.0'
+        run: |
+          echo "pnpm version: $(pnpm -v)";
+          pnpm -v | grep -q '7.10.0'
       - name: Validate Node.js version
         shell: bash
-        run: node -v | grep -q 'v18.6.0'
+        run: |
+          echo "Node version: $(node -v)";
+          node -v | grep -q 'v18.6.0'
