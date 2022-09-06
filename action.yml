@@ -7,7 +7,8 @@ branding:
 inputs:
   skip-checkout:
     description: Skip the checkout step
-    default: false
+    default: 'false'
+
   # pnpm/action-setup
   pnpm-version:
     # See https://github.com/pnpm/action-setup#version for more details
@@ -23,7 +24,7 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      if: inputs.skip-checkout != true
+      if: inputs.skip-checkout != 'true'
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
       with:
