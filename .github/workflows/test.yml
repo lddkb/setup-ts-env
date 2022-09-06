@@ -30,3 +30,25 @@ jobs:
         run: |
           echo "Node version: $(node -v)";
           node -v | grep -q 'v18.6.0'
+
+  test_version_inputs:
+    name: Test version inputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run the action
+        uses: ./
+        with:
+          pnpm-version: 7.9.5
+          node-version: 18.5.0
+      - name: Validate pnpm version
+        shell: bash
+        run: |
+          echo "pnpm version: $(pnpm -v)";
+          pnpm -v | grep -q '7.9.5'
+      - name: Validate Node.js version
+        shell: bash
+        run: |
+          echo "Node version: $(node -v)";
+          node -v | grep -q 'v18.5.0'
