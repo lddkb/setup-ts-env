@@ -29,12 +29,14 @@ runs:
       uses: pnpm/action-setup@v2
       with:
         version: ${{ inputs.pnpm-version }}
+    - name: Set Node.js version
+      shell: bash
+      id: find-node-version
+      run: ./get_version.sh ${{ inputs.node-version }}
     - name: Setup Node.js
-      uses: actions/setup-node@b4b18e5317cee56876918c4f099a680d3bca1cb8 # See https://github.com/actions/setup-node/pull/485
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node-version }}
-        node-version-file: package.json
-        check-latest: true
+        node-version: ${{ steps.find-node-version.outputs.NODE_VERSION }}
         cache: pnpm
     - name: Install dependencies
       shell: bash
