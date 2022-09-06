@@ -1,0 +1,23 @@
+name: Test Action
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  test_version_inference:
+    name: Test version inference from package.json
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Add dummy package.json
+        shell: bash
+        run: cp tests/inference.json package.json
+      - name: Run the action
+        uses: ./
+      - name: Validate pnpm version
+        shell: bash
+        run: pnpm -v | grep -q '7.9.4' && exit 0
+      - name: Validate Node.js version
+        shell: bash
+        run: node -v | grep -q '16.15.1' && exit 0
