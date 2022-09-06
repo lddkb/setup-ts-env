@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           cp tests/package.json package.json;
-          cp tests/package-lock.yaml pnpm-lock.yaml;
+          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
         with:
@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           cp tests/package.json package.json;
-          cp tests/package-lock.yaml pnpm-lock.yaml;
+          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
         with:
