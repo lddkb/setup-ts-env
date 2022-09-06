@@ -45,6 +45,7 @@ jobs:
       - name: Run the action
         uses: ./
         with:
+          skip-checkout: true
           pnpm-version: 7.9.5
           node-version: 18.5.0
       - name: Validate pnpm version
