@@ -37,6 +37,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Add dummy package.json
+        shell: bash
+        run: |
+          cp tests/inference.json package.json;
+          cp tests/inference.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
         with:
