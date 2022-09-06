@@ -30,7 +30,7 @@ runs:
       with:
         version: ${{ inputs.pnpm-version }}
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@b4b18e5317cee56876918c4f099a680d3bca1cb8 # See https://github.com/actions/setup-node/pull/485
       with:
         node-version: ${{ inputs.node-version }}
         node-version-file: package.json
