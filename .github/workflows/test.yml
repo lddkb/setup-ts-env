@@ -16,6 +16,8 @@ jobs:
         run: cp tests/inference.json package.json
       - name: Run the action
         uses: ./
+        with:
+          skip-checkout: true
       - name: Validate pnpm version
         shell: bash
         run: pnpm -v | grep -q '7.9.4' && exit 0
