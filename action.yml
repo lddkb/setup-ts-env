@@ -13,7 +13,7 @@ inputs:
   # actions/setup-node
   node-version:
     # See https://github.com/actions/setup-node#supported-version-syntax for more details.
-    description: 'Version Spec of the Node.js version to use. Examples: 12.x, 10.15.1, >=10.15.0.'
+    description: "Version Spec of the Node.js version to use. Examples: 12.x, 10.15.1, >=10.15.0."
 
 runs:
   using: composite
@@ -30,5 +30,5 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: pnpm
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
       shell: bash
+      run: pnpm install --frozen-lockfile
