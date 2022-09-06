@@ -1,0 +1,60 @@
+name: Test Action
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  test_version_inference:
+    name: Test version inference from package.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Add dummy package.json
+        shell: bash
+        run: |
+          cp tests/package.json package.json;
+          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
+      - name: Run the action
+        uses: ./
+        with:
+          skip-checkout: true
+      - name: Validate pnpm version
+        shell: bash
+        run: |
+          echo "pnpm version: $(pnpm -v)";
+          pnpm -v | grep -q '7.10.0'
+      - name: Validate Node.js version
+        shell: bash
+        run: |
+          echo "Node version: $(node -v)";
+          node -v | grep -q 'v18.6.0'
+
+  test_version_inputs:
+    name: Test version inputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Add dummy package.json
+        shell: bash
+        run: |
+          cp tests/package.json package.json;
+          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
+      - name: Run the action
+        uses: ./
+        with:
+          skip-checkout: true
+          pnpm-version: 7.9.5
+          node-version: 18.5.0
+      - name: Validate pnpm version
+        shell: bash
+        run: |
+          echo "pnpm version: $(pnpm -v)";
+          pnpm -v | grep -q '7.9.5'
+      - name: Validate Node.js version
+        shell: bash
+        run: |
+          echo "Node version: $(node -v)";
+          node -v | grep -q 'v18.5.0'

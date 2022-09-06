@@ -5,6 +5,10 @@ branding:
   icon: box
 
 inputs:
+  skip-checkout:
+    description: Skip the checkout step
+    default: 'false'
+
   # pnpm/action-setup
   pnpm-version:
     # See https://github.com/pnpm/action-setup#version for more details
@@ -13,22 +17,27 @@ inputs:
   # actions/setup-node
   node-version:
     # See https://github.com/actions/setup-node#supported-version-syntax for more details.
-    description: 'Version Spec of the Node.js version to use. Examples: 12.x, 10.15.1, >=10.15.0.'
+    description: "Version Spec of the Node.js version to use. Examples: 12.x, 10.15.1, >=10.15.0."
 
 runs:
   using: composite
   steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      if: inputs.skip-checkout != 'true'
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
       with:
         version: ${{ inputs.pnpm-version }}
+    - name: Set Node.js version
+      shell: bash
+      id: find-node-version
+      run: ./get_version.sh ${{ inputs.node-version }}
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node-version }}
+        node-version: ${{ steps.find-node-version.outputs.NODE_VERSION }}
         cache: pnpm
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
       shell: bash
+      run: pnpm install --frozen-lockfile
