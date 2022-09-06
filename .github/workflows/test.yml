@@ -7,6 +7,7 @@ on:
 jobs:
   test_version_inference:
     name: Test version inference from package.json
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
