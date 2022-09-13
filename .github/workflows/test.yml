@@ -11,8 +11,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Add dummy package.json
+        run: cp -r tests/* .
       - name: Run the action
-        working-directory: ./tests
         uses: ./
       - name: Validate pnpm version
         run: |
@@ -29,8 +30,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Add dummy package.json
+        run: cp -r tests/* .
       - name: Run the action
-        working-directory: ./tests
         uses: ./
         with:
           pnpm-version: "7.9.5"
