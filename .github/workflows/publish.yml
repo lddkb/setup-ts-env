@@ -14,6 +14,11 @@ jobs:
           pnpm-version: '7.11.0'
           node-version: '18.8.0'
       - name: Release
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+          issues: write
+          pull-requests: write
         run: pnpm semantic-release -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
