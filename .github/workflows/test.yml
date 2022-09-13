@@ -11,12 +11,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Add dummy package.json
-        run: |
-          cp tests/package.json package.json;
-          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
-        uses: ./
+        working-directory: tests
+        uses: ../
       - name: Validate pnpm version
         run: |
           echo "pnpm version: $(pnpm -v)";
@@ -32,12 +29,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Add dummy package.json
-        run: |
-          cp tests/package.json package.json;
-          cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
-        uses: ./
+        working-directory: tests
+        uses: ../
         with:
           pnpm-version: "7.9.5"
           node-version: "18.5.0"
