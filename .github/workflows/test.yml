@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Run the action
         working-directory: ./tests
-        uses: ../action.yml
+        uses: ./
       - name: Validate pnpm version
         run: |
           echo "pnpm version: $(pnpm -v)";
@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Run the action
         working-directory: ./tests
-        uses: ../action.yml
+        uses: ./
         with:
           pnpm-version: "7.9.5"
           node-version: "18.5.0"
