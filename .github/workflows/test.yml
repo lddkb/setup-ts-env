@@ -1,7 +1,7 @@
 name: Test Action
 on:
   push:
-    branches: [main]
+    # branches: [main]
   pull_request:
 
 jobs:
@@ -17,8 +17,6 @@ jobs:
           cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
-        with:
-          skip-checkout: true
       - name: Validate pnpm version
         run: |
           echo "pnpm version: $(pnpm -v)";
@@ -40,10 +38,8 @@ jobs:
           cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
-        with:
-          skip-checkout: true
-          pnpm-version: 7.9.5
-          node-version: 18.5.0
+          pnpm-version: "7.9.5"
+          node-version: "18.5.0"
       - name: Validate pnpm version
         run: |
           echo "pnpm version: $(pnpm -v)";
