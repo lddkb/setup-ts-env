@@ -9,6 +9,9 @@ inputs:
     description: Skip the checkout step
     default: 'false'
 
+  working-directory:
+    description: Working directory in which to execute the commands
+
   # pnpm/action-setup
   pnpm-version:
     # See https://github.com/pnpm/action-setup#version for more details
@@ -24,12 +27,15 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      working-directory: ${{ inputs.working-directory }}      
       if: inputs.skip-checkout != 'true'
     - name: Setup pnpm
+      working-directory: ${{ inputs.working-directory }}        
       uses: pnpm/action-setup@v2
       with:
         version: ${{ inputs.pnpm-version }}
     - name: Set Node.js version
+      working-directory: ${{ inputs.working-directory }}      
       shell: bash
       id: find-node-version
       run: ./get_version.sh ${{ inputs.node-version }}
@@ -38,6 +44,8 @@ runs:
       with:
         node-version: ${{ steps.find-node-version.outputs.NODE_VERSION }}
         cache: pnpm
+      working-directory: ${{ inputs.working-directory }}        
     - name: Install dependencies
+      working-directory: ${{ inputs.working-directory }}  
       shell: bash
       run: pnpm install --frozen-lockfile
