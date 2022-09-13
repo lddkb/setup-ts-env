@@ -1,9 +1,9 @@
 {
-    "packageManager": "pnpm@7.10.0",
-    "engines": {
-        "node": "18.6.0"
-    },
-    "dependencies": {
-        "nanoid": "4.0.0"
-    }
+  "packageManager": "pnpm@7.10.0",
+  "engines": {
+    "node": "18.6.0"
+  },
+  "dependencies": {
+    "nanoid": "4.0.0"
+  }
 }

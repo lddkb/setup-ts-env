@@ -6,14 +6,12 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
     [
-      "@semantic-release/github",
+      "@semantic-release/exec",
       {
-        "assets": "out/*.tgz"
+        "publishCmd": "./scripts/publish.sh ${nextRelease.version}"
       }
-    ],
-    ["@semantic-release/exec", {
-      "publishCmd": "./publish.sh ${nextRelease.version}"
-    }]
+    ]
   ]
 }
