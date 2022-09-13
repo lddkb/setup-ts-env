@@ -1,0 +1,20 @@
+name: Release
+on:
+  workflow_run:
+    workflows: [Test Action]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  release:
+    steps:
+      - name: Setup TypeScript environment
+        uses: ./
+        with:
+          pnpm-version: '7.11.0'
+          node-version: '18.8.0'
+      - name: Release
+        run: pnpm semantic-release -d
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
