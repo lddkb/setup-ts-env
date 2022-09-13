@@ -38,6 +38,7 @@ jobs:
           cp tests/pnpm-lock.yaml pnpm-lock.yaml;
       - name: Run the action
         uses: ./
+        with:
           pnpm-version: "7.9.5"
           node-version: "18.5.0"
       - name: Validate pnpm version
