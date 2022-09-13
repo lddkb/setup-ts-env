@@ -20,6 +20,6 @@ jobs:
           pnpm-version: "7.11.0"
           node-version: "18.8.0"
       - name: Release
-        run: pnpm semantic-release -d
+        run: pnpm semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
